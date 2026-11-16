@@ -1,0 +1,129 @@
+#+TITLE: Org Mode for Security Professionals
+#+PROPERTY: header-args:sh :results output verbatim :exports both :eval no-export
+#+STARTUP: overview indent
+
+* 0. Update Nuclei Templates
+#+begin_src sh :results output verbatim :exports both
+exec 2>&1
+nuclei -update-templates -no-color
+#+end_src
+
+* 1. Spin Up Vulnerable Podman Targets
+** 1.1
+#+begin_src sh :results output verbatim :exports both
+exec 2>&1
+podman run -d --rm --name vuln-apache -p 127.0.0.1:8081:80   docker.io/vulhub/httpd:2.4.50
+podman run -d --rm --name vuln-juice  -p 127.0.0.1:8082:3000 docker.io/bkimminich/juice-shop:latest
+podman run -d --rm --name vuln-vampi  -p 127.0.0.1:8083:5000 docker.io/erev0s/vampi:latest
+podman run -d --rm --name vuln-dvwa   -p 127.0.0.1:8084:80   docker.io/vulnerables/web-dvwa:latest
+
+sleep 5
+#+end_src
+
+** 1.2
+Confirm *success* on deployment
+#+begin_src sh :results output verbatim :exports both
+podman ps --format "table {{.Names}}\t{{.Image}}\t{{.Ports}}"
+#+end_src
+
+
+* 2. Target Scope and Fingerprinting
+Target list:
+#+NAME: target_ports
+| URL                   | App_Name        |
+|-----------------------+-----------------|
+| http://127.0.0.1:8081 | Apache_2.4.50   |
+| http://127.0.0.1:8082 | OWASP_JuiceShop |
+| http://127.0.0.1:8083 | VAmPI_REST_API  |
+| http://127.0.0.1:8084 | DVWA            |
+
+Fingerprinting with *httpx*.
+*Command:*
+#+NAME: live_urls
+#+begin_src sh :var scope=target_ports :results output verbatim :exports both
+exec 2>&1
+echo "$scope" | awk '{print $1}' | httpx -silent -status-code -title -tech-detect -no-color
+#+end_src
+
+
+* 3. Endpoint Discovery
+Content discovery with *Katana*.
+
+*Command:*
+#+begin_src sh :results output verbatim :exports both
+exec 2>&1
+katana -u http://127.0.0.1:8082 -u http://127.0.0.1:8083 -d 2 -silent -no-color | head -n 25
+#+end_src
+
+* 4. Vulnerability Scanning with Nuclei
+*Command:*
+#+begin_src sh :var scope=target_ports :results silent :exports code
+rm -f /tmp/nuclei-results.jsonl
+echo "$scope" | awk '{print $1}' | nuclei \
+  -silent \
+  -no-color \
+  -tags cve,exposures,misconfig,default-login,panel,tech \
+  -jsonl -o /tmp/nuclei-results.jsonl >/dev/null 2>&1
+#+end_src
+
+* 5. Automated Vulnerability Triage Table (Python -> Inline Org Table)
+Formatted findings.
+#+begin_src python :results value table :colnames '("Severity" "Template_ID" "Target_URL" "Matched_Name") :exports both
+import json
+from pathlib import Path
+
+results_file = Path("/tmp/nuclei-results.jsonl")
+rows = []
+
+if results_file.exists():
+    for line in results_file.read_text().splitlines():
+        if not line.strip():
+            continue
+        item = json.loads(line)
+        severity = item.get("info", {}).get("severity", "unknown").upper()
+        template_id = item.get("template-id", "")
+        matched = item.get("matched-at", "")
+        name = item.get("info", {}).get("name", "")
+        rows.append([severity, template_id, matched, name])
+
+order = {"CRITICAL": 0, "HIGH": 1, "MEDIUM": 2, "LOW": 3, "INFO": 4}
+rows.sort(key=lambda r: order.get(r[0], 99))
+return rows if rows else [["NONE", "No findings", "-", "-"]]
+#+end_src
+
+* 6. Export Playbook to GitBook Markdown & Quarto (.qmd)
+#+begin_src sh :results output verbatim :exports none
+INPUT_ORG="org-lab.org"
+
+# Generate GitBook Markdown (.md)
+pandoc "$INPUT_ORG" -f org -t gfm -s -o nuclei-org-lab.md
+echo "[+] Successfully generated org-lab.md."
+
+# Generate Quarto Notebook (.qmd) with executable {bash} and {python} chunk headers
+cat << 'EOF' > org-lab.qmd
+---
+title: "Org Mode for Security Professionals"
+format:
+  html:
+    theme: darkly
+    toc: true
+  pdf: default
+execute:
+  eval: false
+  echo: true
+---
+
+EOF
+
+pandoc "$INPUT_ORG" -f org -t gfm \
+  | sed -E 's/^```(sh|bash)$/```{bash}/g; s/^```python$/```{python}/g' \
+  >> org-lab.qmd
+
+echo "[+] Successfully generated org-lab.qmd."
+#+end_src
+
+* 7. Lab Teardown
+#+begin_src sh :results output verbatim :exports both
+exec 2>&1
+podman stop vuln-apache vuln-juice vuln-vampi vuln-dvwa
+#+end_src

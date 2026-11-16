@@ -1,19 +1,12 @@
 title: "sarrus1811 // SecOps & Purple Team Field Manual"
 description: "Offensive Security, Malware Analysis, eBPF & Cloud IaC Architecture"
 remote_theme: pages-themes/hacker@v0.2.0
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
 plugins:
   - jekyll-remote-theme
   - jekyll-relative-links
-  - jekyll-titles-from-headings
   - jekyll-optional-front-matter
-
-relative_links:
-  enabled: true
-  collections: true
-
-titles_from_headings:
-  enabled: true
-  strip_title: false
-
-optional_front_matter:
-  remove_originals: true
+  - jekyll-titles-from-headings

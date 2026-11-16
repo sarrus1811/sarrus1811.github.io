@@ -1,7 +1,3 @@
----
-layout: default
-title: "LLM Prompting & Verification Framework for SecOps"
----
 # LLM Prompting & Usage Framework - Quick Reference
 Prompting LLMs to get the desired results shouldn't have to be complicated. While it's a process of trial and error, there are ways to get desired results in a somewhat reproducible manner. This article discusses about one such method.
 ## Part 1: The Single-Prompt Structure

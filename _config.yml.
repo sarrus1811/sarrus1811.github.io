@@ -4,7 +4,16 @@ remote_theme: pages-themes/hacker@v0.2.0
 plugins:
   - jekyll-remote-theme
   - jekyll-relative-links
+  - jekyll-titles-from-headings
+  - jekyll-optional-front-matter
 
 relative_links:
   enabled: true
   collections: true
+
+titles_from_headings:
+  enabled: true
+  strip_title: false
+
+optional_front_matter:
+  remove_originals: true

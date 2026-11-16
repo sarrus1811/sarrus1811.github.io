@@ -17,6 +17,6 @@ I document my ideas here.
 ---
 
 ### Articles on Practitioner Workflows & SecOps Tooling
-- **[Emacs for Security Professionals](docs/Emacs%20for%20Security%20Professionals.html)** — Self-documenting offensive runbooks and DFIR playbooks using Org-babel, TRAMP remote pivots, and Quarto.
-- **[LLM Prompting & Verification Framework for SecOps](docs/On%20Prompt%20engineering.html)** — Structured prompting, verification guardrails, and failure-mode diagnostics for detection engineering.
-- **[PowerShell CLI and unbound parameters](docs/PowerShell%20CLI%20and%20unbound%20parameters.html)** — Ideas on how to fix PowerShell's notorious CLI parameter parsing.
+- **[Emacs for Security Professionals](docs/Emacs%20for%20Security%20Professionals.html)** - Self-documenting offensive runbooks and DFIR playbooks using Org-babel, TRAMP remote pivots, and Quarto.
+- **[LLM Prompting & Verification Framework for SecOps](docs/On%20Prompt%20engineering.html)** - Structured prompting, verification guardrails, and failure-mode diagnostics for detection engineering.
+- **[PowerShell CLI and unbound parameters](docs/PowerShell%20CLI%20and%20unbound%20parameters.html)** - Ideas on how to fix PowerShell's notorious CLI parameter parsing.

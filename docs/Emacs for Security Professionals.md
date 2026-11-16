@@ -1,4 +1,4 @@
-# Literate Pentesting & Reporting with Emacs and Org Mode
+# Org Mode for Cyber security
 
 [← Back to Home](../)
 

@@ -4,13 +4,6 @@ I document my ideas here.
 
 ---
 
-### Articles on Practitioner Workflows & SecOps Tooling
-- **[Emacs for Security Professionals](docs/Emacs%20for%20Security%20Professionals.html)** — Self-documenting offensive runbooks and DFIR playbooks using Org-babel, TRAMP remote pivots, and Quarto.
-- **[LLM Prompting & Verification Framework for SecOps](docs/On%20Prompt%20engineering.html)** — Structured prompting, verification guardrails, and failure-mode diagnostics for detection engineering.
-- **[PowerShell CLI and unbound parameters](docs/PowerShell%20CLI%20and%20unbound%20parameters.html)** — Ideas on how to fix PowerShell's notorious CLI parameter parsing.
-
----
-
 ### Featured Repositories
 
 | Repository | Stack | Description |
@@ -20,3 +13,10 @@ I document my ideas here.
 | **[emacs_config](https://github.com/sarrus1811/emacs_config)** | `Emacs Lisp` · `Org-Babel` · `TRAMP` | Literate SecOps configuration for multi-hop SSH execution, inline command capture, and automated Quarto/Markdown reporting. |
 | **[wrap](https://github.com/sarrus1811/wrap)** | `PowerShell` · `Windows Internals` | Automated Windows workstation and malware analysis environment bootstrapper. |
 | **[sigma_rules](https://github.com/sarrus1811/sigma_rules)** | `Sigma` · `Sysmon` · `eBPF` | Custom detection rules targeting adversary tradecraft and assembly enumeration. |
+
+---
+
+### Articles on Practitioner Workflows & SecOps Tooling
+- **[Emacs for Security Professionals](docs/Emacs%20for%20Security%20Professionals.html)** — Self-documenting offensive runbooks and DFIR playbooks using Org-babel, TRAMP remote pivots, and Quarto.
+- **[LLM Prompting & Verification Framework for SecOps](docs/On%20Prompt%20engineering.html)** — Structured prompting, verification guardrails, and failure-mode diagnostics for detection engineering.
+- **[PowerShell CLI and unbound parameters](docs/PowerShell%20CLI%20and%20unbound%20parameters.html)** — Ideas on how to fix PowerShell's notorious CLI parameter parsing.

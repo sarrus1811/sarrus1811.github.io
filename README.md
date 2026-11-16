@@ -11,7 +11,7 @@ I document my ideas here.
 
 ---
 
-### Featured Open-Source Repositories
+### Featured Repositories
 
 | Repository | Stack | Description |
 | :--- | :--- | :--- |

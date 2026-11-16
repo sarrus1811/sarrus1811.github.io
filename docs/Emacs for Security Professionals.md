@@ -1,3 +1,8 @@
+---
+layout: default
+title: "Literate Pentesting & Reporting with Emacs, Org-Mode & TRAMP"
+---
+
 A very common pain point for security workflows is reporting and collecting data from day to day operations and engagements. If you don't include the normal copy paste method of including screenshots and command output, territory of reporting is really in InfoSec wastelands. In this article, I would like to propose a different solution in this domain using literate programming with Emacs and Org mode.
 ## Quick primer on Org mode
 Before the interesting stuff, lets cover the absolute basics of Org mode. 

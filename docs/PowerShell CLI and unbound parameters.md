@@ -1,3 +1,8 @@
+---
+layout: default
+title: "PowerShell CLI and Unbound Parameters"
+---
+
 Let's assume that for whatever ill founded reason you chose PowerShell to write a CLI application. Your application needs to parse CLI flags and corresponding arguments. Let's also assume you want your CLI app to work as normally with multiple arguments natively, without the friction of quotes or commas, for e.g. `.\app.ps1 -unattended -flag1 arg1 arg2 -flag2 arg3 arg4 arg5`. 
 
 The reality however is that PowerShell’s parameter binder aggressively parses space-separated strings resulting in some of the weirdest string parsing behaviors possible. 

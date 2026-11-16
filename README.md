@@ -1,11 +1,11 @@
 ## Personal website
 
-I document my ideas here.
+I document what I do here.
 
 ---
 
 ### Practitioner Workflows & SecOps Tooling
-- **[Literate Pentesting & Reporting with Emacs, Org-Mode & TRAMP](./docs/emacs-org-tramp-secops.md)** — Self-documenting offensive runbooks and DFIR playbooks using Org-babel, TRAMP remote pivots, and Quarto.
+- **[Literate Pentesting & Reporting with Emacs, Org-Mode & TRAMP](./docs/Emacs-for-Security-Professionals.md)** — Self-documenting offensive runbooks and DFIR playbooks using Org-babel, TRAMP remote pivots, and Quarto.
 - **[LLM Prompting & Verification Framework for SecOps](./docs/llm-secops-framework.md)** — Structured prompting, verification guardrails, and failure-mode diagnostics for detection engineering.
 - **[PowerShell CLI and unbound parameters](./docs/PowerShell-CLI-and-unbound-parameters.md)** — Ideas on how to fix PowerShell's notorious CLI parameter parsing.
 

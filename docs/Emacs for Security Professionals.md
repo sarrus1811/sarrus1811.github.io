@@ -60,7 +60,7 @@ Pressing `C-c C-c` with your cursor inside the source block executes it. Notice 
 ## A Worked Example: Podman + ProjectDiscovery Lab
 
 ### Requirements
-This walkthrough requires **Podman**, the **ProjectDiscovery Suite** (`httpx`, `katana`, `nuclei`), and **Emacs** with Org Babel configured. You can use Doom Emacs, Spacemacs, or a custom configuration like [mine](https://github.com/sarrus1811/emacs_config).
+This walkthrough requires **Podman**, the **ProjectDiscovery Suite** (`httpx`, `katana`, `nuclei`), and **Emacs** with Org Babel configured. You can use Doom Emacs, Spacemacs, or a custom configuration like [mine](https://github.com/sarrus1811/emacs_config). Org file for in this article is available at [here](https://github.com/sarrus1811/sarrus1811.github.io/blob/main/docs/assets/org-lab.org).
 
 To export the final engagement playbook into Markdown and Quarto reports, install `pandoc` and `quarto`:
 
